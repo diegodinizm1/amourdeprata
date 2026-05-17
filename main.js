@@ -221,6 +221,44 @@ modal.querySelector('.catalog-close').addEventListener('click', closeCatalog);
 modal.querySelector('.catalog-backdrop').addEventListener('click', closeCatalog);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCatalog(); });
 
+// Swipe-down to close
+const sheet = modal.querySelector('.catalog-sheet');
+let dragStart = 0;
+let dragging = false;
+
+sheet.addEventListener('pointerdown', e => {
+  if (e.target.closest('.catalog-body')) return; // don't intercept scroll inside body
+  dragging = true;
+  dragStart = e.clientY;
+  sheet.style.transition = 'none';
+  sheet.setPointerCapture(e.pointerId);
+});
+
+sheet.addEventListener('pointermove', e => {
+  if (!dragging) return;
+  const dy = Math.max(0, e.clientY - dragStart);
+  sheet.style.transform = `translateY(${dy}px)`;
+});
+
+sheet.addEventListener('pointerup', e => {
+  if (!dragging) return;
+  dragging = false;
+  sheet.style.transition = '';
+  const dy = e.clientY - dragStart;
+  if (dy > 120) {
+    closeCatalog();
+    sheet.style.transform = '';
+  } else {
+    sheet.style.transform = '';
+  }
+});
+
+sheet.addEventListener('pointercancel', () => {
+  dragging = false;
+  sheet.style.transition = '';
+  sheet.style.transform = '';
+});
+
 document.querySelectorAll('.cat').forEach(cat => {
   cat.addEventListener('click', e => {
     e.preventDefault();
