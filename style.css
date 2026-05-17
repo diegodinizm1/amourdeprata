@@ -957,3 +957,30 @@ footer {
   .hero-image .card-tag .swatch { width: 36px; height: 36px; }
   .hero-image .price-pill { right: 12px; top: 12px; padding: 10px 14px; font-size: 11px; }
 }
+
+/* ---------- WhatsApp FAB ---------- */
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--cyan);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 28px rgba(42, 141, 177, 0.45);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-fab:hover {
+  background: var(--cyan-deep);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 14px 36px rgba(42, 141, 177, 0.55);
+}
+@media (max-width: 620px) {
+  .whatsapp-fab { bottom: 20px; right: 20px; width: 54px; height: 54px; }
+  .whatsapp-fab svg { width: 24px; height: 24px; }
+}
