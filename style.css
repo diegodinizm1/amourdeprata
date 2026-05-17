@@ -892,6 +892,8 @@ footer {
   font-size: 14px;
 }
 .foot-col li.with-icon svg { color: var(--cyan); flex: none; }
+.foot-col li.with-icon a { color: rgba(255,255,255,0.85); font-size: 14px; }
+.foot-col li.with-icon a:hover { color: var(--paper); }
 
 .foot-bottom {
   display: flex;
@@ -984,4 +986,39 @@ footer {
 @media (max-width: 620px) {
   .whatsapp-fab { bottom: 20px; right: 20px; width: 54px; height: 54px; }
   .whatsapp-fab svg { width: 24px; height: 24px; }
+}
+
+/* ---------- Scroll animations ---------- */
+.anim {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.anim.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Hero image float ---------- */
+.hero-image {
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-14px); }
+}
+
+/* ---------- FAB pulse ring ---------- */
+.whatsapp-fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--cyan);
+  z-index: -1;
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(1.7); opacity: 0; }
 }
