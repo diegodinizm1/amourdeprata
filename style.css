@@ -952,6 +952,7 @@ footer {
   :root { --section-y: 72px; }
   .cats { grid-template-columns: repeat(2, 1fr); }
   .products { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .product .quick { font-size: 9px; letter-spacing: 0.1em; height: 38px; bottom: 8px; left: 8px; right: 8px; }
   .ig-grid { grid-template-columns: repeat(2, 1fr); }
   .foot-top { grid-template-columns: 1fr; gap: 36px; padding-bottom: 36px; }
   .hero-copy h1 { font-size: clamp(44px, 12vw, 64px); }
