@@ -702,6 +702,7 @@ button { font: inherit; cursor: pointer; }
 }
 .review blockquote {
   margin: 0;
+  flex: 1;
   font-size: 18px;
   line-height: 1.55;
   letter-spacing: -0.01em;
