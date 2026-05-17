@@ -956,8 +956,7 @@ footer {
   .foot-top { grid-template-columns: 1fr; gap: 36px; padding-bottom: 36px; }
   .hero-copy h1 { font-size: clamp(44px, 12vw, 64px); }
   .nav-right .btn { display: none; }
-  .announce-track { gap: 22px; }
-  .announce-track span:nth-child(n+3) { display: none; }
+  .announce { display: none; }
   .hero-image .card-tag { left: 12px; bottom: 12px; padding: 12px 14px; }
   .hero-image .card-tag .swatch { width: 36px; height: 36px; }
   .hero-image .price-pill { right: 12px; top: 12px; padding: 10px 14px; font-size: 11px; }
