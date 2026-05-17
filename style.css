@@ -747,40 +747,10 @@ button { font: inherit; cursor: pointer; }
   display: inline-flex; align-items: center; gap: 8px;
 }
 .ig-head .handle a { color: var(--cyan); font-weight: 600; }
-.ig-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(6px, 0.9vw, 12px);
+behold-widget {
+  display: block;
+  width: 100%;
 }
-.ig-tile {
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: hidden;
-  background: var(--silver-1);
-  border-radius: 2px;
-}
-.ig-tile .photo { border-radius: 0; }
-.ig-tile:nth-child(1) .photo { background: linear-gradient(135deg, #e8ebee 0%, #c3c8cc 100%); }
-.ig-tile:nth-child(2) .photo { background: linear-gradient(135deg, #eef0f2 0%, #d3d7da 100%); }
-.ig-tile:nth-child(3) .photo { background: linear-gradient(135deg, #f1f3f4 0%, #d7dbde 100%); }
-.ig-tile:nth-child(4) .photo { background: linear-gradient(135deg, #e6eaed 0%, #bfc4c8 100%); }
-.ig-tile:nth-child(5) .photo { background: linear-gradient(135deg, #edeff1 0%, #ccd1d4 100%); }
-.ig-tile:nth-child(6) .photo { background: linear-gradient(135deg, #e9ecee 0%, #c6cbce 100%); }
-.ig-tile .ig-icon {
-  position: absolute;
-  top: 10px; right: 10px;
-  color: rgba(255,255,255,0.85);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.ig-tile:hover .ig-icon { opacity: 1; }
-.ig-tile::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: rgba(10,10,10,0); transition: background 0.25s;
-  pointer-events: none;
-}
-.ig-tile:hover::after { background: rgba(10,10,10,0.20); }
 
 /* ---------- WhatsApp CTA ---------- */
 .cta-band {
