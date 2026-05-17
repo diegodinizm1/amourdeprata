@@ -117,7 +117,6 @@ const catalog = {
     { src: 'assets/photos/IMG_8890.jpg', name: 'Brincos Gota Cristal' },
     { src: 'assets/photos/IMG_8891.jpg', name: 'Brincos Sortidos' },
     { src: 'assets/photos/brincos-cristal.jpeg', name: 'Brincos Cristal Princess' },
-    { src: 'assets/photos/brincos.png',  name: 'Brincos Anéis' },
     { src: 'assets/photos/brincos-coloridos.jpeg', name: 'Brincos Coloridos Tray' },
   ],
   'Pulseiras': [
