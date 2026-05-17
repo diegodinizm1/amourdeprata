@@ -135,7 +135,7 @@ const catalog = {
     { src: 'assets/photos/IMG_8864.jpg', name: 'Pulseira Tartarugas' },
     { src: 'assets/photos/IMG_8865.jpg', name: 'Pulseira Sol e Lua' },
     { src: 'assets/photos/IMG_8867.jpg', name: 'Pulseira Flores Coloridas' },
-    { src: 'assets/photos/pulseira-coracao.jpeg', name: 'Pulseira Coração' },
+    { src: 'assets/photos/pulseira-coracao.jpeg', name: 'Pulseira Pandora' },
     { src: 'assets/photos/pulseiras-borboleta.jpeg', name: 'Pulseiras Borboleta Coloridas' },
     { src: 'assets/photos/pulseira-charms.jpeg', name: 'Pulseira Charms' },
   ],
