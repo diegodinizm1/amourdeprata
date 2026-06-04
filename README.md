@@ -85,6 +85,7 @@ amourdeprata/
 ├── index.html          # Marcação + meta tags (SEO/OG) + JSON-LD + sprite SVG
 ├── style.css           # Estilos (design system em custom properties)
 ├── main.js             # Catálogo, gestos, animações, menu, tracking, a11y
+├── products.json       # Catálogo (dados das peças) — fonte única, data-driven
 ├── 404.html            # Página de erro com a marca
 ├── vercel.json         # Headers de segurança + cache
 ├── site.webmanifest    # PWA (instalável)
@@ -203,6 +204,7 @@ amourdeprata/
 ├── index.html          # Markup + meta (SEO/OG) + JSON-LD + SVG sprite
 ├── style.css           # Styles (custom-property design system)
 ├── main.js             # Catalog, gestures, animations, menu, tracking, a11y
+├── products.json       # Catalog data (single source of truth, data-driven)
 ├── 404.html            # Branded error page
 ├── vercel.json         # Security headers + caching
 ├── site.webmanifest    # PWA (installable)
