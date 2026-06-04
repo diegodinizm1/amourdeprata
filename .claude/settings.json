@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/diegocavalcantedinizmaia/Documents/projeto/amourdeprataerp-back/**)",
+      "Bash(find /Users/diegocavalcantedinizmaia/Documents/projeto/amourdeprataerp-back/src -type f -name \"*.java\" | grep -E \"\\(Controller|Service|Entity|Repository\\)\" | head -20)",
+      "Read(//Users/diegocavalcantedinizmaia/Documents/projeto/amourdeprataerp-back/src/**)",
+      "Bash(find /Users/diegocavalcantedinizmaia/Documents/projeto/amourdeprataerp-front/src -maxdepth 3 -type f \\\\\\( -name \"*.ts\" -o -name \"*.tsx\" \\\\\\) ! -path \"*/node_modules/*\" | head -30)",
+      "Read(//Users/diegocavalcantedinizmaia/Documents/projeto/amourdeprataerp-front/src/**)"
+    ]
+  }
+}

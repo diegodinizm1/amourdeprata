@@ -195,7 +195,7 @@ function openCatalog(category) {
     ? items.map(item => `
         <div class="catalog-item">
           <div class="catalog-img">
-            <img src="${item.src}" alt="${item.name}" loading="lazy" />
+            <img src="${item.src}" alt="${item.name}" loading="lazy" decoding="async" />
           </div>
           <span class="catalog-item-name">${item.name}</span>
           <a class="catalog-wa-btn"
