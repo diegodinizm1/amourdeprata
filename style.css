@@ -475,35 +475,53 @@ button { font: inherit; cursor: pointer; }
   cursor: pointer;
   border-radius: 4px;
 }
-.cat:hover { background: var(--cyan-soft); }
+.cat:hover .cat-photo img { transform: scale(1.05); }
 .cat:hover .cat-arrow { color: var(--cyan); transform: translate(2px, -2px); }
 .cat .count {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(255,255,255,0.9);
   font-weight: 600;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.35);
 }
-.cat .cat-svg {
+.cat .cat-photo {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgba(10,10,10,0.78);
+  inset: 0;
+  z-index: 0;
+}
+.cat .cat-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.cat .cat-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.08) 42%, rgba(0,0,0,0.28) 100%);
 }
 .cat .cat-name {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.01em;
+  position: relative;
   z-index: 1;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
 }
 .cat-arrow {
   position: absolute;
   top: 14px; right: 14px;
   width: 28px; height: 28px;
   border-radius: 50%;
-  background: var(--paper);
+  background: rgba(255,255,255,0.92);
   display: flex; align-items: center; justify-content: center;
   color: var(--ink);
+  z-index: 1;
   transition: color 0.2s, transform 0.2s;
 }
 .cat-arrow svg { width: 12px; height: 12px; }
