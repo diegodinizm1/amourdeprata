@@ -48,8 +48,12 @@ const observer = new IntersectionObserver((entries) => {
   });
 });
 
+// Respeita usuários que pedem menos movimento
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Count-up for hero stats
 function countUp(el, target) {
+  if (reduceMotion) { el.textContent = target.toLocaleString('pt-BR'); return; }
   const duration = 1600;
   const start = performance.now();
   const update = (now) => {
@@ -206,18 +210,40 @@ function openCatalog(category) {
         </div>`).join('')
     : `<p class="catalog-empty">Em breve mais peças nessa categoria!</p>`;
 
+  lastFocused = document.activeElement;
   document.body.style.overflow = 'hidden';
-  requestAnimationFrame(() => modal.classList.add('open'));
+  requestAnimationFrame(() => {
+    modal.classList.add('open');
+    closeBtn.focus();
+  });
 }
 
 function closeCatalog() {
   modal.classList.remove('open');
   document.body.style.overflow = '';
+  if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
 }
 
-modal.querySelector('.catalog-close').addEventListener('click', closeCatalog);
+let lastFocused = null;
+const closeBtn = modal.querySelector('.catalog-close');
+
+closeBtn.addEventListener('click', closeCatalog);
 modal.querySelector('.catalog-backdrop').addEventListener('click', closeCatalog);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCatalog(); });
+
+// Focus trap enquanto o catálogo está aberto
+modal.addEventListener('keydown', e => {
+  if (e.key !== 'Tab' || !modal.classList.contains('open')) return;
+  const focusables = modal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+  if (!focusables.length) return;
+  const first = focusables[0];
+  const last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault(); last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault(); first.focus();
+  }
+});
 
 // Swipe-down to close
 const sheet = modal.querySelector('.catalog-sheet');
@@ -262,5 +288,40 @@ document.querySelectorAll('.cat').forEach(cat => {
     e.preventDefault();
     const category = cat.querySelector('.cat-name')?.textContent.trim();
     if (category && catalog[category]) openCatalog(category);
+  });
+});
+
+// ============================================================
+// Mobile menu
+// ============================================================
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+if (navToggle && mobileMenu) {
+  const setMenu = (open) => {
+    document.body.classList.toggle('menu-open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  navToggle.addEventListener('click', () =>
+    setMenu(!document.body.classList.contains('menu-open')));
+  mobileMenu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setMenu(false);
+  });
+}
+
+// ============================================================
+// Footer "Coleções" → abre o catálogo da categoria
+// ============================================================
+document.querySelectorAll('[data-cat]').forEach(link => {
+  link.addEventListener('click', e => {
+    const category = link.getAttribute('data-cat');
+    if (catalog[category]) {
+      e.preventDefault();
+      openCatalog(category);
+    }
   });
 });

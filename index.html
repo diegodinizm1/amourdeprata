@@ -50,7 +50,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Italiana&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Italiana&display=swap" rel="stylesheet" />
 <link rel="icon" type="image/png" href="assets/logo.png" />
 <link rel="apple-touch-icon" href="assets/logo.png" />
 <link rel="stylesheet" href="style.css" />
@@ -86,9 +86,25 @@
       <span class="l2">SILVER STORE</span>
     </a>
 
-    <div class="nav-right"></div>
+    <div class="nav-right">
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- ===== Mobile menu ===== -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-inner" aria-label="Menu principal">
+    <a href="#colecoes">Coleções</a>
+    <a href="#destaques">Destaques</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#faq">Dúvidas</a>
+    <a href="#contato">Contato</a>
+    <a class="btn lg mobile-wa" href="https://wa.me/5584998287232?text=Olá%20Maria%21%20Vim%20pelo%20site%20e%20quero%20conhecer%20as%20peças%20%F0%9F%92%8E" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  </nav>
+</div>
 
 <!-- ===== Hero ===== -->
 <section class="hero">
@@ -149,54 +165,54 @@
     </div>
 
     <div class="cats">
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/aneis.jpg" alt="Anéis Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Anéis</span>
-      </a>
+      </button>
 
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/IMG_8791.jpg" alt="Colares Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Colares</span>
-      </a>
+      </button>
 
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/brincos-cristal.jpeg" alt="Brincos Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Brincos</span>
-      </a>
+      </button>
 
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/pulseira-coracao.jpeg" alt="Pulseiras Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Pulseiras</span>
-      </a>
+      </button>
 
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/pingentes.jpeg" alt="Pingentes Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Pingentes</span>
-      </a>
+      </button>
 
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/cordao-elo.jpeg" alt="Cordões Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Cordões</span>
-      </a>
+      </button>
 
-      <a class="cat" href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">
+      <button class="cat" type="button">
         <span class="count">Ver</span>
         <span class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         <span class="cat-photo"><img src="assets/photos/IMG_8875.jpg" alt="Berloques Prata 925" loading="lazy" decoding="async" /></span>
         <span class="cat-name">Berloques</span>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -384,6 +400,61 @@
   </div>
 </section>
 
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2 class="h-section" style="margin-top:18px">Antes de <em>chamar</em>,<br/>talvez a resposta esteja aqui.</h2>
+      </div>
+      <p class="head-right">Cuidados, envio, garantia e tamanhos — o básico que todo mundo pergunta.</p>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>A prata é 925 de verdade?</summary>
+        <div class="faq-a"><p>Sim. Todas as peças são prata 925 legítima, com certificado. Por isso não escurecem com facilidade e acompanham garantia de 90 dias.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Como cuido das minhas peças?</summary>
+        <div class="faq-a"><p>Guarde em local seco, longe de umidade e perfumes, e evite contato com produtos químicos. Tire as peças ao tomar banho ou dormir. Para limpar, use uma flanela seca — assim a prata mantém o brilho por muito mais tempo.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Vocês entregam para todo o Brasil?</summary>
+        <div class="faq-a"><p>Sim! Enviamos para todo o Brasil. As peças são embaladas com cuidado e despachadas em até 48h após a confirmação. Prazo e frete são combinados direto com a Maria pelo WhatsApp.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Como faço meu pedido?</summary>
+        <div class="faq-a"><p>É só chamar a Maria no WhatsApp ou no direct do Instagram. Ela tira dúvidas de tamanho, manda fotos extras e separa a sua peça na hora.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Tem garantia e troca?</summary>
+        <div class="faq-a"><p>Tem. Toda peça tem 90 dias de garantia. Se algo não sair como você esperava, fale com a Maria que a gente resolve.</p></div>
+      </details>
+      <details class="faq-item">
+        <summary>Como descubro meu tamanho de anel?</summary>
+        <div class="faq-a"><p>A Maria te ajuda pelo WhatsApp: é só medir um anel que já te serve ou seguir as dicas simples que ela passa. Rapidinho você acha o tamanho certo.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "A prata é 925 de verdade?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Todas as peças são prata 925 legítima, com certificado. Por isso não escurecem com facilidade e acompanham garantia de 90 dias." } },
+    { "@type": "Question", "name": "Como cuido das minhas peças?", "acceptedAnswer": { "@type": "Answer", "text": "Guarde em local seco, longe de umidade e perfumes, e evite contato com produtos químicos. Tire as peças ao tomar banho ou dormir. Para limpar, use uma flanela seca." } },
+    { "@type": "Question", "name": "Vocês entregam para todo o Brasil?", "acceptedAnswer": { "@type": "Answer", "text": "Sim! Enviamos para todo o Brasil. As peças são embaladas com cuidado e despachadas em até 48h após a confirmação. Prazo e frete são combinados pelo WhatsApp." } },
+    { "@type": "Question", "name": "Como faço meu pedido?", "acceptedAnswer": { "@type": "Answer", "text": "É só chamar a Maria no WhatsApp ou no direct do Instagram. Ela tira dúvidas de tamanho, manda fotos extras e separa a sua peça." } },
+    { "@type": "Question", "name": "Tem garantia e troca?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Toda peça tem 90 dias de garantia. Se algo não sair como esperado, fale com a Maria que a gente resolve." } },
+    { "@type": "Question", "name": "Como descubro meu tamanho de anel?", "acceptedAnswer": { "@type": "Answer", "text": "A Maria te ajuda pelo WhatsApp: meça um anel que já te serve ou siga as dicas que ela passa." } }
+  ]
+}
+</script>
+
 <!-- ===== Instagram ===== -->
 <section class="section">
   <div class="wrap">
@@ -402,8 +473,25 @@
     <behold-widget feed-id="5UMLLmXQkhIKkbJMe7lK"></behold-widget>
     <script>
       (() => {
-        const d=document,s=d.createElement("script");s.type="module";
-        s.src="https://w.behold.so/widget.js";d.head.append(s);
+        const w = document.querySelector('behold-widget');
+        if (!w) return;
+        let loaded = false;
+        const load = () => {
+          if (loaded) return;
+          loaded = true;
+          const s = document.createElement('script');
+          s.type = 'module';
+          s.src = 'https://w.behold.so/widget.js';
+          document.head.append(s);
+        };
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            if (entries.some(e => e.isIntersecting)) { load(); io.disconnect(); }
+          }, { rootMargin: '300px' });
+          io.observe(w);
+        } else {
+          load();
+        }
       })();
     </script>
   </div>
@@ -475,13 +563,13 @@
       <div class="foot-col">
         <h4>Coleções</h4>
         <ul>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Anéis</a></li>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Colares</a></li>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Brincos</a></li>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Pulseiras</a></li>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Pingentes</a></li>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Cordões</a></li>
-          <li><a href="https://www.instagram.com/amour_de_prata/" target="_blank" rel="noopener">Berloques</a></li>
+          <li><a href="#colecoes" data-cat="Anéis">Anéis</a></li>
+          <li><a href="#colecoes" data-cat="Colares">Colares</a></li>
+          <li><a href="#colecoes" data-cat="Brincos">Brincos</a></li>
+          <li><a href="#colecoes" data-cat="Pulseiras">Pulseiras</a></li>
+          <li><a href="#colecoes" data-cat="Pingentes">Pingentes</a></li>
+          <li><a href="#colecoes" data-cat="Cordões">Cordões</a></li>
+          <li><a href="#colecoes" data-cat="Berloques">Berloques</a></li>
         </ul>
       </div>
 
@@ -489,10 +577,10 @@
         <h4>A Loja</h4>
         <ul>
           <li><a href="#sobre">Sobre a Maria</a></li>
-          <li><a href="https://wa.me/5584998287232?text=Tenho%20uma%20d%C3%BAvida%20sobre%20cuidados%20com%20a%20prata%20%F0%9F%92%8E" target="_blank" rel="noopener">Cuidados com a prata</a></li>
-          <li><a href="https://wa.me/5584998287232?text=Tenho%20uma%20d%C3%BAvida%20sobre%20garantia%20e%20trocas%20%F0%9F%92%8E" target="_blank" rel="noopener">Garantia &amp; trocas</a></li>
-          <li><a href="https://wa.me/5584998287232?text=Tenho%20uma%20d%C3%BAvida%20sobre%20envios%20%F0%9F%92%8E" target="_blank" rel="noopener">Envios</a></li>
-          <li><a href="https://wa.me/5584998287232?text=Tenho%20uma%20pergunta%20%F0%9F%92%8E" target="_blank" rel="noopener">Perguntas frequentes</a></li>
+          <li><a href="#faq">Cuidados com a prata</a></li>
+          <li><a href="#faq">Garantia &amp; trocas</a></li>
+          <li><a href="#faq">Envios</a></li>
+          <li><a href="#faq">Perguntas frequentes</a></li>
         </ul>
       </div>
 
@@ -534,5 +622,9 @@
 </a>
 
 <script src="main.js"></script>
+
+<!-- Vercel Analytics (ative o Web Analytics no painel do projeto p/ coletar dados) -->
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
