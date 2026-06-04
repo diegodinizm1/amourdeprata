@@ -138,7 +138,7 @@ const catalog = {
     { src: 'assets/photos/IMG_8869.jpg', name: 'Pulseira Corações' },
     { src: 'assets/photos/IMG_8873.jpg', name: 'Pulseira Pingente Cristal' },
     { src: 'assets/photos/colar-bolinhas.jpeg', name: 'Pulseira Bolinhas Prata' },
-    { src: 'assets/photos/IMG_8900.jpg', name: 'Pulseira Masculina Cordões Mistos' },
+    { src: 'assets/photos/IMG_8900.jpg', name: 'Pulseira Masculina' },
   ],
   'Pingentes': [
     { src: 'assets/photos/IMG_8531.jpg', name: 'Pingentes Prata' },
