@@ -124,18 +124,23 @@ function openCatalog(category) {
   const items = catalog[category] || [];
   catalogTitle.innerHTML = `<em>${category}</em>`;
   catalogGrid.innerHTML = items.length
-    ? items.map(item => `
+    ? items.map(item => {
+        // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
+        const imgUrl = new URL(item.src, location.href).href;
+        const msg = `Olá Maria! 💎 Tenho interesse nesta peça:\n\n*${item.name}*\n${imgUrl}`;
+        return `
         <div class="catalog-item">
           <div class="catalog-img">
             <img src="${item.src}" alt="${item.name}" loading="lazy" decoding="async" />
           </div>
           <span class="catalog-item-name">${item.name}</span>
           <a class="catalog-wa-btn"
-             href="${WA}${encodeURIComponent(`Olá Maria! Tenho interesse em ${item.name} 💎`)}"
+             href="${WA}${encodeURIComponent(msg)}"
              target="_blank" rel="noopener">
             ${WA_ICON} Pedir
           </a>
-        </div>`).join('')
+        </div>`;
+      }).join('')
     : `<p class="catalog-empty">Em breve mais peças nessa categoria!</p>`;
 
   lastFocused = document.activeElement;
