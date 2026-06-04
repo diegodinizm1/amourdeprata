@@ -90,7 +90,7 @@ const catalog = {
     { src: 'assets/photos/IMG_8740.jpg', name: 'Anéis Band' },
     { src: 'assets/photos/IMG_8742.jpg', name: 'Anel Esmeralda' },
     { src: 'assets/photos/IMG_8743.jpg', name: 'Anel Flor de Cristal' },
-    { src: 'assets/photos/aneis.png',    name: 'Anéis Coloridos' },
+    { src: 'assets/photos/aneis.jpg',    name: 'Anéis Coloridos' },
   ],
   'Colares': [
     { src: 'assets/photos/IMG_8791.jpg', name: 'Colar Coração Rubi' },
