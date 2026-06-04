@@ -12,8 +12,6 @@
 
 ![Catálogo por categoria — cards com foto real de cada peça](assets/screenshots/categories.jpg)
 
-<img src="assets/screenshots/mobile-hero.jpg" width="300" alt="Versão mobile responsiva" />
-
 ---
 
 ## Português
