@@ -225,7 +225,7 @@ let dragStart = 0;
 let dragging = false;
 
 sheet.addEventListener('pointerdown', e => {
-  if (e.target.closest('.catalog-body')) return;
+  if (e.target.closest('.catalog-body') || e.target.closest('.catalog-close')) return;
   dragging = true;
   dragStart = e.clientY;
   sheet.style.transition = 'none';
