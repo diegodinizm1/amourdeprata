@@ -88,8 +88,8 @@ const WA_ICON = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentCo
 // Catálogo: fonte única de dados em products.json.
 // Obs.: requer servidor http (em file:// o navegador bloqueia o fetch).
 let catalog = {};
-const catalogReady = fetch("products.json")
-  .then(r => r.json())
+// Reaproveita o fetch iniciado cedo no <head> (window.__catalog); senão, busca aqui.
+const catalogReady = (window.__catalog || fetch('products.json').then(r => r.json()))
   .then(data => { catalog = data; })
   .catch(err => console.error("Não foi possível carregar products.json:", err));
 
@@ -121,6 +121,8 @@ const catalogTitle = modal.querySelector('.catalog-title');
 const catalogGrid  = modal.querySelector('.catalog-grid');
 
 function openCatalog(category) {
+  currentCategory = category;
+  if (typeof window.va === 'function') window.va('event', { name: 'category_open', category });
   const items = catalog[category] || [];
   catalogTitle.innerHTML = `<em>${category}</em>`;
   catalogGrid.innerHTML = items.length
@@ -152,17 +154,76 @@ function openCatalog(category) {
 }
 
 function closeCatalog() {
+  currentCategory = null;
   modal.classList.remove('open');
   document.body.style.overflow = '';
   if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
 }
 
 let lastFocused = null;
+let currentCategory = null;
 const closeBtn = modal.querySelector('.catalog-close');
 
-closeBtn.addEventListener('click', closeCatalog);
-modal.querySelector('.catalog-backdrop').addEventListener('click', closeCatalog);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCatalog(); });
+// ---- Lightbox: zoom da foto do catálogo ----
+const lightbox = document.createElement('div');
+lightbox.id = 'lightbox';
+lightbox.setAttribute('aria-hidden', 'true');
+lightbox.innerHTML = `<button class="lightbox-close" aria-label="Fechar">&times;</button><img alt="" />`;
+document.body.appendChild(lightbox);
+const lightboxImg = lightbox.querySelector('img');
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightboxImg.removeAttribute('src');
+}
+lightbox.addEventListener('click', closeLightbox);
+catalogGrid.addEventListener('click', e => {
+  const img = e.target.closest('.catalog-img img');
+  if (img) openLightbox(img.getAttribute('src'), img.getAttribute('alt'));
+});
+
+// ---- Deep-link de categoria + botão voltar fecha o modal (history API) ----
+const slugify = (s) => s.toLowerCase().normalize('NFD')
+  .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+let slugToCat = {};
+const catFromHash = () => slugToCat[decodeURIComponent(location.hash.replace(/^#/, ''))];
+function navOpenCatalog(category) {
+  history.pushState({ cat: category }, '', '#' + slugify(category));
+  openCatalog(category);
+}
+function closeViaHistory() {
+  if (history.state && history.state.cat) {
+    history.back();                       // X / voltar removem a entrada → popstate fecha
+  } else {
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    closeCatalog();
+  }
+}
+window.addEventListener('popstate', () => {
+  const cat = catFromHash();
+  if (cat) { if (currentCategory !== cat) openCatalog(cat); }
+  else if (modal.classList.contains('open')) closeCatalog();
+});
+catalogReady.then(() => {
+  slugToCat = {};
+  for (const c of Object.keys(catalog)) slugToCat[slugify(c)] = c;
+  const cat = catFromHash();                // deep-link: #aneis abre a categoria
+  if (cat) { history.replaceState(null, '', '#' + slugify(cat)); openCatalog(cat); }
+});
+
+closeBtn.addEventListener('click', closeViaHistory);
+modal.querySelector('.catalog-backdrop').addEventListener('click', closeViaHistory);
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (lightbox.classList.contains('open')) { closeLightbox(); return; }
+  if (modal.classList.contains('open')) closeViaHistory();
+});
 
 // Focus trap enquanto o catálogo está aberto
 modal.addEventListener('keydown', e => {
@@ -203,7 +264,7 @@ sheet.addEventListener('pointerup', e => {
   sheet.style.transition = '';
   const dy = e.clientY - dragStart;
   if (dy > 120) {
-    closeCatalog();
+    closeViaHistory();
     sheet.style.transform = '';
   } else {
     sheet.style.transform = '';
@@ -222,7 +283,7 @@ document.querySelectorAll('.cat').forEach(cat => {
     const category = cat.querySelector('.cat-name')?.textContent.trim();
     if (!category) return;
     await catalogReady;            // garante que products.json carregou
-    if (catalog[category]) openCatalog(category);
+    if (catalog[category]) navOpenCatalog(category);
   });
 });
 
@@ -256,7 +317,7 @@ document.querySelectorAll('[data-cat]').forEach(link => {
     const category = link.getAttribute('data-cat');
     e.preventDefault();
     await catalogReady;            // garante que products.json carregou
-    if (catalog[category]) openCatalog(category);
+    if (catalog[category]) navOpenCatalog(category);
   });
 });
 
@@ -266,12 +327,17 @@ document.querySelectorAll('[data-cat]').forEach(link => {
 document.addEventListener('click', e => {
   const wa = e.target.closest('a[href*="wa.me"]');
   if (!wa || typeof window.va !== 'function') return;
-  let location = 'outro';
-  if (wa.closest('.whatsapp-fab')) location = 'botao-flutuante';
-  else if (wa.closest('.mobile-menu')) location = 'menu-mobile';
-  else if (wa.closest('.catalog-sheet')) location = 'catalogo';
-  else if (wa.closest('.cta-band')) location = 'cta-contato';
-  else if (wa.closest('.about')) location = 'sobre';
-  else if (wa.closest('footer')) location = 'rodape';
-  window.va('event', { name: 'whatsapp_click', location });
+  let where = 'outro';
+  if (wa.closest('.whatsapp-fab')) where = 'botao-flutuante';
+  else if (wa.closest('.mobile-menu')) where = 'menu-mobile';
+  else if (wa.closest('.catalog-sheet')) where = 'catalogo';
+  else if (wa.closest('.cta-band')) where = 'cta-contato';
+  else if (wa.closest('.about')) where = 'sobre';
+  else if (wa.closest('footer')) where = 'rodape';
+  const payload = { name: 'whatsapp_click', location: where };
+  if (where === 'catalogo') {
+    const p = wa.closest('.catalog-item')?.querySelector('.catalog-item-name')?.textContent.trim();
+    if (p) payload.product = p;     // qual peça gerou o pedido
+  }
+  window.va('event', payload);
 });

@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<script>window.__catalog = fetch('/products.json').then(r => r.json());</script>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
 <meta name="description" content="Joias autorais em prata 925 certificada, escolhidas e conferidas pessoalmente pela Maria Eduarda. Atendimento direto pelo WhatsApp, com garantia de 90 dias." />
 <title>Amour de Prata — Silver Store</title>
 <link rel="canonical" href="https://amourdeprata.vercel.app/" />
@@ -48,7 +50,33 @@
     "telephone": "+55-84-99828-7232",
     "contactType": "sales",
     "availableLanguage": "Portuguese"
-  }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "reviewCount": "3"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Júlia Guedes" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Eu amei, a pulseira é maravilhosa, e o anel é perfeito."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Camila Rocha" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "É a terceira peça que compro com a Maria. Prata de verdade, não escurece, e o atendimento parece coisa de amiga. Vício!"
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Larissa Faria" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Comprei a pulseira pra minha mãe e ela amou. Embalagem linda, peça delicada e a Maria foi um amor do começo ao fim."
+    }
+  ]
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -627,7 +655,6 @@
 <script src="main.js"></script>
 
 <!-- Vercel Analytics (ative o Web Analytics no painel do projeto p/ coletar dados) -->
-<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
