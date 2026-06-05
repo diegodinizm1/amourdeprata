@@ -414,6 +414,43 @@ body.menu-open .mobile-menu { opacity: 1; pointer-events: auto; }
   border-radius: inherit;
 }
 
+/* ---------- Brilho ao inclinar / mover ---------- */
+.shine { perspective: 1000px; }
+.shine .photo {
+  transform: rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 4;
+  opacity: var(--shine, 0);
+  transition: opacity 0.35s ease;
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 16%),
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 48%);
+  mix-blend-mode: screen;
+}
+.shine-hint {
+  position: absolute;
+  left: 50%; bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 15px;
+  border: none; border-radius: 999px;
+  background: rgba(10,10,10,0.6);
+  color: #fff;
+  font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+}
+
 /* ---------- Marquee ---------- */
 .marquee {
   border-top: 1px solid var(--line-soft);

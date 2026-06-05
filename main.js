@@ -341,3 +341,65 @@ document.addEventListener('click', e => {
   }
   window.va('event', payload);
 });
+
+// ============================================================
+// Brilho ao inclinar / mover (protótipo no hero)
+// ============================================================
+(function shineEffect() {
+  if (reduceMotion) return;
+  const heroImg = document.querySelector('.hero-image');
+  const card = heroImg?.querySelector('.photo');
+  if (!card) return;
+
+  heroImg.classList.add('shine');
+  const sheen = document.createElement('span');
+  sheen.className = 'sheen';
+  card.appendChild(sheen);
+
+  const AMP = 12; // graus de inclinação do tilt 3D
+  const clamp01 = v => Math.max(0, Math.min(1, v));
+  const set = (px, py, active) => {
+    px = clamp01(px); py = clamp01(py);
+    card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+    card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+    card.style.setProperty('--tiltY', ((px - 0.5) * -AMP).toFixed(2) + 'deg');
+    card.style.setProperty('--tiltX', ((py - 0.5) *  AMP).toFixed(2) + 'deg');
+    card.style.setProperty('--shine', active ? '1' : '0');
+  };
+  set(0.5, 0.5, false);
+
+  // Desktop: segue o mouse
+  heroImg.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    const r = card.getBoundingClientRect();
+    set((e.clientX - r.left) / r.width, (e.clientY - r.top) / r.height, true);
+  });
+  heroImg.addEventListener('pointerleave', () => set(0.5, 0.5, false));
+
+  // Mobile: segue a inclinação do aparelho
+  const onTilt = e => {
+    if (e.gamma == null) return;
+    set(0.5 + Math.max(-30, Math.min(30, e.gamma)) / 60,
+        0.5 + Math.max(-30, Math.min(30, (e.beta ?? 90) - 90)) / 60,
+        true);
+  };
+  const startTilt = () => window.addEventListener('deviceorientation', onTilt);
+
+  if (typeof DeviceOrientationEvent !== 'undefined' &&
+      typeof DeviceOrientationEvent.requestPermission === 'function') {
+    // iOS 13+: precisa de um toque para pedir permissão de movimento
+    const hint = document.createElement('button');
+    hint.type = 'button';
+    hint.className = 'shine-hint';
+    hint.textContent = '✨ Incline para ver brilhar';
+    heroImg.appendChild(hint);
+    hint.addEventListener('click', () => {
+      DeviceOrientationEvent.requestPermission()
+        .then(s => { if (s === 'granted') startTilt(); })
+        .catch(() => {})
+        .finally(() => hint.remove());
+    });
+  } else if (window.DeviceOrientationEvent) {
+    startTilt(); // Android e afins: direto
+  }
+})();
