@@ -161,31 +161,77 @@ button { font: inherit; cursor: pointer; }
   .namoro-bar { font-size: 11.5px; }
 }
 
-.namoro-collection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
-  padding: 28px 32px;
-  border-radius: 12px;
-  background:
-    radial-gradient(120% 140% at 100% 0%, rgba(162,62,99,0.10) 0%, transparent 55%),
-    var(--cream);
-  border: 1px solid rgba(162,62,99,0.18);
-}
 .nc-eyebrow { color: #a23e63; }
-.nc-title {
-  font-size: clamp(22px, 3vw, 30px);
+
+/* Seção dedicada Dia dos Namorados (abaixo do hero) */
+.namoro-section {
+  background:
+    radial-gradient(90% 130% at 88% 0%, rgba(162,62,99,0.12) 0%, transparent 55%),
+    var(--cream);
+  border-top: 1px solid rgba(162,62,99,0.14);
+  border-bottom: 1px solid rgba(162,62,99,0.14);
+}
+.namoro-inner {
+  display: grid;
+  grid-template-columns: 1.5fr auto;
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  padding-top: clamp(40px, 6vw, 64px);
+  padding-bottom: clamp(40px, 6vw, 64px);
+}
+.ns-title {
+  font-size: clamp(28px, 4.4vw, 44px);
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin: 10px 0 8px;
+  line-height: 1.05;
+  margin: 14px 0 12px;
 }
-.nc-title em { font-family: var(--serif); font-style: italic; font-weight: 400; color: #a23e63; }
-.nc-sub { color: var(--muted); font-size: 14px; max-width: 60ch; margin: 0; }
-.nc-btn { flex: none; background: #a23e63; border-color: #a23e63; }
-.nc-btn:hover { background: #8a3556; border-color: #8a3556; }
+.ns-title em { font-family: var(--serif); font-style: italic; font-weight: 400; color: #a23e63; }
+.ns-sub { color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 60ch; margin: 0; }
+.btn.ns-btn { margin-top: 22px; background: #a23e63; border-color: #a23e63; }
+.btn.ns-btn:hover { background: #8a3556; border-color: #8a3556; }
+
+/* Destaque do 15% OFF */
+.ns-off {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px 38px;
+  border-radius: 18px;
+  background: #a23e63;
+  color: #fff;
+  box-shadow: 0 22px 54px rgba(162,62,99,0.28);
+  transform: rotate(-3deg);
+}
+.ns-off-big {
+  font-family: var(--serif);
+  font-size: clamp(60px, 9vw, 100px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.ns-off-lbl {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-top: 8px;
+}
+.ns-off-lbl small {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  opacity: 0.9;
+  margin-top: 5px;
+}
+@media (max-width: 760px) {
+  .namoro-inner { grid-template-columns: 1fr; }
+  .ns-off { align-self: flex-start; transform: rotate(-2deg); padding: 22px 30px; }
+}
 
 .ico-heart {
   width: 1em; height: 1em;
@@ -258,17 +304,6 @@ button { font: inherit; cursor: pointer; }
   vertical-align: -0.14em;
   flex: none;
 }
-
-/* Promoção do buquê na seção */
-.nc-promo {
-  margin-top: 12px;
-  font-size: 13.5px;
-  line-height: 1.5;
-  color: var(--ink);
-  max-width: 58ch;
-}
-.nc-promo strong { font-weight: 700; }
-.nc-promo .ico-flor { color: #a23e63; font-size: 15px; }
 
 /* Contador da seção (caixas) */
 .namoro-count {
