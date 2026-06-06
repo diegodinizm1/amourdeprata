@@ -177,6 +177,7 @@ function openCatalog(category) {
   if (typeof window.va === 'function') window.va('event', { name: 'category_open', category });
   const items = catalog[category] || [];
   const namoroMode = category === NAMORO_CAT;
+  modal.classList.toggle('namoro', namoroMode);   // palco minimalista da campanha
   catalogTitle.innerHTML = `<em>${category}</em>`;
   if (namoroTabs) { namoroTabs.remove(); namoroTabs = null; }
   if (namoroMode) buildNamoroTabs(items);
