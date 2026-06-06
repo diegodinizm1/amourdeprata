@@ -2,39 +2,49 @@
   "Anéis": [
     {
       "src": "assets/photos/IMG_8731.jpg",
-      "name": "Anéis Solitário Colorido"
+      "name": "Anéis Solitário Colorido",
+      "preco": 90
     },
     {
       "src": "assets/photos/IMG_8733.jpg",
-      "name": "Anel Triplo Cristal"
+      "name": "Anel Triplo Cristal",
+      "preco": 130
     },
     {
       "src": "assets/photos/IMG_8735.jpg",
       "name": "Anel Solitário",
       "namorados": true,
-      "publico": "ela"
+      "publico": "ela",
+      "preco": 130
     },
     {
       "src": "assets/photos/IMG_8738.jpg",
       "name": "Anel Solitário Cristal",
       "namorados": true,
-      "publico": "ela"
+      "publico": "ela",
+      "preco": 120
     },
     {
       "src": "assets/photos/IMG_8740.jpg",
-      "name": "Anéis Band"
+      "name": "Anéis Band",
+      "preco": 130
     },
     {
       "src": "assets/photos/IMG_8742.jpg",
-      "name": "Anel Esmeralda"
+      "name": "Anel Esmeralda",
+      "preco": 90
     },
     {
       "src": "assets/photos/IMG_8743.jpg",
-      "name": "Anel Flor de Cristal"
+      "name": "Anel Flor de Cristal",
+      "preco": 90,
+      "aPartir": true
     },
     {
       "src": "assets/photos/aneis.jpg",
-      "name": "Anéis Coloridos"
+      "name": "Anéis Coloridos",
+      "preco": 90,
+      "aPartir": true
     }
   ],
   "Colares": [
