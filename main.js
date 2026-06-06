@@ -387,17 +387,17 @@ document.addEventListener('click', e => {
 // Countdown — Dia dos Namorados (12/06)
 // ============================================================
 (function namoroCountdown() {
-  const bar = document.getElementById('namoroCount');     // tarja do topo
-  const big = document.getElementById('namoroBigCount');  // seção
-  if (!bar && !big) return;
+  const bar = document.getElementById('namoroCount');        // tarja do topo (texto)
+  const boxes = document.querySelectorAll('.namoro-count');  // seção + modal (caixas)
+  if (!bar && !boxes.length) return;
   const target = new Date(2026, 5, 12, 23, 59, 59).getTime(); // 12/06/2026 23h59
   const pad = n => String(n).padStart(2, '0');
-  const set = (u, v) => { const el = big && big.querySelector(`[data-u="${u}"]`); if (el) el.textContent = pad(v); };
+  const set = (u, v) => boxes.forEach(b => { const el = b.querySelector(`[data-u="${u}"]`); if (el) el.textContent = pad(v); });
   const tick = () => {
     const diff = target - Date.now();
     if (diff <= 0) {
       if (bar) bar.innerHTML = 'É hoje! <svg class="ico-heart" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-heart"/></svg>';
-      if (big) big.innerHTML = '<span class="nc-today">Chegou o Dia dos Namorados 💝</span>';
+      boxes.forEach(b => { b.innerHTML = '<span class="nc-today">Chegou o Dia dos Namorados 💝</span>'; });
       return;
     }
     const d = Math.floor(diff / 86400000);
@@ -409,4 +409,36 @@ document.addEventListener('click', e => {
     setTimeout(tick, 1000);
   };
   tick();
+})();
+
+// ============================================================
+// Modal de boas-vindas da campanha (1x por sessão, atraso de 1,5s)
+// ============================================================
+(function promoModal() {
+  const m = document.getElementById('promoModal');
+  if (!m) return;
+  const KEY = 'promo-namoro-seen';
+  let lastFocus = null;
+  const open = () => {
+    lastFocus = document.activeElement;
+    m.classList.add('open');
+    m.setAttribute('aria-hidden', 'false');
+    m.querySelector('.promo-close').focus();
+  };
+  const close = () => {
+    m.classList.remove('open');
+    m.setAttribute('aria-hidden', 'true');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  };
+  m.querySelector('.promo-close').addEventListener('click', close);
+  m.querySelector('.promo-backdrop').addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && m.classList.contains('open')) close();
+  });
+  // qualquer ação do modal fecha ele (o data-cat abre a coleção por baixo)
+  m.querySelectorAll('.promo-cta, a[href]').forEach(b => b.addEventListener('click', close));
+
+  if (!sessionStorage.getItem(KEY)) {
+    setTimeout(() => { open(); sessionStorage.setItem(KEY, '1'); }, 1500);
+  }
 })();
