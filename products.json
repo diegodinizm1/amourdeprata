@@ -69,6 +69,14 @@
       "src": "assets/photos/IMG_8799.jpg",
       "name": "Terço Prata",
       "preco": 220
+    },
+    {
+      "src": "assets/photos/IMG_8747.jpg",
+      "name": "Colar Gravatinha de Cristais"
+    },
+    {
+      "src": "assets/photos/IMG_9019.jpg",
+      "name": "Escapulário Nossa Senhora Aparecida"
     }
   ],
   "Brincos": [
@@ -460,6 +468,30 @@
       "namorados": true,
       "publico": "dois",
       "preco": 230
+    },
+    {
+      "src": "assets/photos/IMG_8906.jpg",
+      "name": "Cordão Delicado"
+    },
+    {
+      "src": "assets/photos/IMG_8907.jpg",
+      "name": "Cordão Fino"
+    },
+    {
+      "src": "assets/photos/IMG_8908.jpg",
+      "name": "Cordão Veneziano"
+    },
+    {
+      "src": "assets/photos/IMG_8909.jpg",
+      "name": "Cordão Singapura"
+    },
+    {
+      "src": "assets/photos/IMG_8910.jpg",
+      "name": "Cordão Cordinha"
+    },
+    {
+      "src": "assets/photos/IMG_8911.jpg",
+      "name": "Cordão Prata"
     }
   ],
   "Berloques": [
