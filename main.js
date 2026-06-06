@@ -119,18 +119,20 @@ document.body.appendChild(modal);
 
 const catalogTitle = modal.querySelector('.catalog-title');
 const catalogGrid  = modal.querySelector('.catalog-grid');
+const catalogBody  = modal.querySelector('.catalog-body');
 
-function openCatalog(category) {
-  currentCategory = category;
-  if (typeof window.va === 'function') window.va('event', { name: 'category_open', category });
-  const items = catalog[category] || [];
-  catalogTitle.innerHTML = `<em>${category}</em>`;
-  catalogGrid.innerHTML = items.length
-    ? items.map(item => {
-        // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
-        const imgUrl = new URL(item.src, location.href).href;
-        const msg = `Olá Maria! 💎 Tenho interesse nesta peça:\n\n*${item.name}*\n${imgUrl}`;
-        return `
+const NAMORO_CAT = 'Presentes de Namorados';
+const PUBS = [['tudo', 'Tudo'], ['ela', 'Para ela'], ['ele', 'Para ele'], ['dois', 'Para os dois']];
+let namoroTabs = null;
+let activeTab = 'tudo';
+
+function catalogItemHTML(item, namoroMode) {
+  // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
+  const imgUrl = new URL(item.src, location.href).href;
+  const msg = namoroMode
+    ? `Olá Maria! 💝 Quero esta peça de presente de Dia dos Namorados, me ajuda a escolher?\n\n*${item.name}*\n${imgUrl}`
+    : `Olá Maria! 💎 Tenho interesse nesta peça:\n\n*${item.name}*\n${imgUrl}`;
+  return `
         <div class="catalog-item">
           <div class="catalog-img">
             <img src="${item.src}" alt="${item.name}" loading="lazy" decoding="async" />
@@ -143,8 +145,42 @@ function openCatalog(category) {
             ${WA_ICON} Pedir
           </a>
         </div>`;
-      }).join('')
+}
+
+function renderGrid(items, namoroMode) {
+  catalogGrid.innerHTML = items.length
+    ? items.map(i => catalogItemHTML(i, namoroMode)).join('')
     : `<p class="catalog-empty">Em breve mais peças nessa categoria!</p>`;
+}
+
+function buildNamoroTabs(items) {
+  activeTab = 'tudo';
+  const count = pub => pub === 'tudo' ? items.length : items.filter(i => i.publico === pub).length;
+  namoroTabs = document.createElement('div');
+  namoroTabs.className = 'catalog-tabs';
+  namoroTabs.innerHTML = PUBS.filter(([k]) => count(k) > 0)
+    .map(([k, label], i) => `<button type="button" data-pub="${k}" class="${i === 0 ? 'active' : ''}">${label}</button>`)
+    .join('');
+  catalogBody.insertBefore(namoroTabs, catalogGrid);
+  namoroTabs.addEventListener('click', e => {
+    const b = e.target.closest('button[data-pub]');
+    if (!b) return;
+    activeTab = b.dataset.pub;
+    namoroTabs.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+    renderGrid(activeTab === 'tudo' ? items : items.filter(i => i.publico === activeTab), true);
+    catalogBody.scrollTop = 0;
+  });
+}
+
+function openCatalog(category) {
+  currentCategory = category;
+  if (typeof window.va === 'function') window.va('event', { name: 'category_open', category });
+  const items = catalog[category] || [];
+  const namoroMode = category === NAMORO_CAT;
+  catalogTitle.innerHTML = `<em>${category}</em>`;
+  if (namoroTabs) { namoroTabs.remove(); namoroTabs = null; }
+  if (namoroMode) buildNamoroTabs(items);
+  renderGrid(items, namoroMode);
 
   lastFocused = document.activeElement;
   document.body.style.overflow = 'hidden';
