@@ -7,9 +7,11 @@
   --silver-1: #eef0f2;
   --silver-2: #e3e6e9;
   --silver-3: #c8ccd0;
-  --cyan: #2a8db1;
-  --cyan-deep: #1d6e8c;
-  --cyan-soft: #e6f1f5;
+  /* TEMA CAMPANHA Namorados (rosé) — reverter após 12/06 para o ciano original:
+     --cyan: #2a8db1; --cyan-deep: #1d6e8c; --cyan-soft: #e6f1f5; */
+  --cyan: #a23e63;
+  --cyan-deep: #8a3556;
+  --cyan-soft: #f4e8ee;
   --line: rgba(10, 10, 10, 0.10);
   --line-soft: rgba(10, 10, 10, 0.06);
   --muted: #6b6b6b;
@@ -1335,6 +1337,20 @@ footer {
   font-family: var(--serif);
   font-style: italic;
   color: var(--cyan);
+}
+.temp-note {
+  display: block;
+  margin-top: 7px;
+  font-size: 11px;
+  font-style: italic;
+  color: rgba(255,255,255,0.38);
+  letter-spacing: 0.02em;
+}
+.temp-note .ico-heart {
+  width: 11px; height: 11px;
+  color: #c98aa6;
+  vertical-align: -0.1em;
+  margin-right: 3px;
 }
 .foot-socials {
   display: flex; gap: 10px;
