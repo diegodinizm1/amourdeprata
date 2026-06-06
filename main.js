@@ -126,26 +126,11 @@ const PUBS = [['tudo', 'Tudo'], ['ela', 'Para ela'], ['ele', 'Para ele'], ['dois
 let namoroTabs = null;
 let activeTab = 'tudo';
 
-// Combos joia + buquê (parceria com floricultura · retirada · valor da joia + buquê)
-const COMBOS = [
-  { nome: 'Apaixonada', joia: 'Colar Coração Rubi', buque: 'buquê de rosas vermelhas' },
-  { nome: 'Eterno',     joia: 'Anel Solitário',     buque: 'buquê clássico' },
-  { nome: 'Encanto',    joia: 'Pulseira Pandora',   buque: 'buquê de flores do campo' },
-  { nome: 'Sol e Lua',  joia: 'Pulseira Sol e Lua', buque: 'mini buquê' },
-];
-function findPiece(name) {
-  for (const items of Object.values(catalog)) {
-    const it = items.find(i => i.name === name);
-    if (it) return it;
-  }
-  return null;
-}
-
 function catalogItemHTML(item, namoroMode) {
   // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
   const imgUrl = new URL(item.src, location.href).href;
   const msg = namoroMode
-    ? `Olá Maria! 💝 Quero esta peça de presente de Dia dos Namorados, me ajuda a escolher?\n\n*${item.name}*\n${imgUrl}`
+    ? `Olá Maria! 💝 Quero esta peça de presente de Dia dos Namorados (e quero saber sobre incluir um buquê 🌹). Me ajuda?\n\n*${item.name}*\n${imgUrl}`
     : `Olá Maria! 💎 Tenho interesse nesta peça:\n\n*${item.name}*\n${imgUrl}`;
   return `
         <div class="catalog-item">
@@ -168,50 +153,21 @@ function renderGrid(items, namoroMode) {
     : `<p class="catalog-empty">Em breve mais peças nessa categoria!</p>`;
 }
 
-function renderCombos() {
-  catalogGrid.innerHTML = COMBOS.map(c => {
-    const piece = findPiece(c.joia);
-    const src = piece ? piece.src : '';
-    const imgUrl = piece ? new URL(piece.src, location.href).href : '';
-    const msg = `Olá Maria! 💝 Quero o Combo ${c.nome} (${c.joia} + ${c.buque}) de Dia dos Namorados, para retirada. Como fica o valor da joia + buquê?\n${imgUrl}`;
-    return `
-        <div class="catalog-item combo-item">
-          <div class="catalog-img">
-            <img src="${src}" alt="${c.joia}" loading="lazy" decoding="async" />
-            <span class="combo-flor"><svg class="ico-flor" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-flor"/></svg></span>
-          </div>
-          <span class="catalog-item-name">Combo ${c.nome}</span>
-          <span class="combo-desc">${c.joia} + ${c.buque}</span>
-          <span class="combo-preco">valor da joia + buquê · retirada</span>
-          <a class="catalog-wa-btn"
-             href="${WA}${encodeURIComponent(msg)}"
-             target="_blank" rel="noopener">
-            ${WA_ICON} Pedir combo
-          </a>
-        </div>`;
-  }).join('');
-}
-
 function buildNamoroTabs(items) {
   activeTab = 'tudo';
   const count = pub => pub === 'tudo' ? items.length : items.filter(i => i.publico === pub).length;
   namoroTabs = document.createElement('div');
   namoroTabs.className = 'catalog-tabs';
-  const pubBtns = PUBS.filter(([k]) => count(k) > 0)
+  namoroTabs.innerHTML = PUBS.filter(([k]) => count(k) > 0)
     .map(([k, label], i) => `<button type="button" data-pub="${k}" class="${i === 0 ? 'active' : ''}">${label}</button>`)
     .join('');
-  const comboBtn = COMBOS.length
-    ? `<button type="button" data-pub="combos" class="tab-combos"><svg class="ico-flor" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-flor"/></svg> Combos</button>`
-    : '';
-  namoroTabs.innerHTML = pubBtns + comboBtn;
   catalogBody.insertBefore(namoroTabs, catalogGrid);
   namoroTabs.addEventListener('click', e => {
     const b = e.target.closest('button[data-pub]');
     if (!b) return;
     activeTab = b.dataset.pub;
     namoroTabs.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
-    if (activeTab === 'combos') renderCombos();
-    else renderGrid(activeTab === 'tudo' ? items : items.filter(i => i.publico === activeTab), true);
+    renderGrid(activeTab === 'tudo' ? items : items.filter(i => i.publico === activeTab), true);
     catalogBody.scrollTop = 0;
   });
 }
@@ -431,17 +387,25 @@ document.addEventListener('click', e => {
 // Countdown — Dia dos Namorados (12/06)
 // ============================================================
 (function namoroCountdown() {
-  const el = document.getElementById('namoroCount');
-  if (!el) return;
-  const target = new Date(2026, 5, 11, 23, 59, 59).getTime(); // 12/06/2026
+  const bar = document.getElementById('namoroCount');     // tarja do topo
+  const big = document.getElementById('namoroBigCount');  // seção
+  if (!bar && !big) return;
+  const target = new Date(2026, 5, 12, 23, 59, 59).getTime(); // 12/06/2026 23h59
+  const pad = n => String(n).padStart(2, '0');
+  const set = (u, v) => { const el = big && big.querySelector(`[data-u="${u}"]`); if (el) el.textContent = pad(v); };
   const tick = () => {
     const diff = target - Date.now();
-    if (diff <= 0) { el.innerHTML = 'É hoje! <svg class="ico-heart" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-heart"/></svg>'; return; }
+    if (diff <= 0) {
+      if (bar) bar.innerHTML = 'É hoje! <svg class="ico-heart" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-heart"/></svg>';
+      if (big) big.innerHTML = '<span class="nc-today">Chegou o Dia dos Namorados 💝</span>';
+      return;
+    }
     const d = Math.floor(diff / 86400000);
     const h = Math.floor((diff % 86400000) / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
-    el.textContent = `faltam ${d}d ${h}h ${m}m ${s}s`;
+    if (bar) bar.textContent = `faltam ${d}d ${h}h ${m}m ${s}s`;
+    set('d', d); set('h', h); set('m', m); set('s', s);
     setTimeout(tick, 1000);
   };
   tick();

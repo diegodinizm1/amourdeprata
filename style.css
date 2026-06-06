@@ -251,7 +251,6 @@ button { font: inherit; cursor: pointer; }
 #catalog-modal.namoro .catalog-item-name { padding: 0 2px; }
 #catalog-modal.namoro .catalog-wa-btn { margin: 0 2px; }
 
-/* Combos joia + buquê */
 .ico-flor {
   width: 1em; height: 1em;
   fill: currentColor;
@@ -259,28 +258,51 @@ button { font: inherit; cursor: pointer; }
   vertical-align: -0.14em;
   flex: none;
 }
-.catalog-tabs button.tab-combos { display: inline-flex; align-items: center; gap: 6px; }
-.combo-flor {
-  position: absolute;
-  top: 8px; right: 8px;
-  z-index: 2;
-  display: inline-flex;
+
+/* Promoção do buquê na seção */
+.nc-promo {
+  margin-top: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 58ch;
+}
+.nc-promo strong { font-weight: 700; }
+.nc-promo .ico-flor { color: #a23e63; font-size: 15px; }
+
+/* Contador da seção (caixas) */
+.namoro-count {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+.nc-box {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 26px; height: 26px;
-  color: #fff;
-  border-radius: 999px;
-  background: rgba(162,62,99,0.92);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  min-width: 58px;
+  padding: 10px 8px;
+  border-radius: 10px;
+  background: var(--paper);
+  border: 1px solid rgba(162,62,99,0.18);
 }
-.combo-flor .ico-flor { width: 15px; height: 15px; }
-.combo-item { gap: 8px; }
-.combo-desc { font-size: 12.5px; color: var(--muted); line-height: 1.4; padding: 0 2px; }
-.combo-preco {
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: #a23e63; padding: 0 2px;
+.nc-num {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #a23e63;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
+.nc-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 5px;
+}
+.nc-today { font-size: 16px; font-weight: 700; color: #a23e63; }
 
 /* ---------- Top nav ---------- */
 .nav {
