@@ -339,11 +339,15 @@
   "Berloques": [
     {
       "src": "assets/photos/IMG_8875.jpg",
-      "name": "Berloques Coloridos"
+      "name": "Berloques Coloridos",
+      "preco": 60,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8877.jpg",
-      "name": "Berloques Temáticos"
+      "name": "Berloques Temáticos",
+      "preco": 60,
+      "aPartir": true
     }
   ]
 }

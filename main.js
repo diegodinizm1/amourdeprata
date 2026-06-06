@@ -135,10 +135,10 @@ function priceHTML(item) {
   return `
           <div class="catalog-price">
             <div class="price-row">
-              <span class="price-old">R$ ${fmtBRL(item.preco)}</span>
               <span class="price-now">${pre}R$ ${fmtBRL(promo)}</span>
+              <span class="price-tag">à vista · 15% OFF</span>
             </div>
-            <span class="price-tag">−15% à vista · Namorados</span>
+            <span class="price-card">no cartão ${pre}R$ ${fmtBRL(item.preco)}</span>
           </div>`;
 }
 
