@@ -204,10 +204,30 @@ button { font: inherit; cursor: pointer; }
 .btn.ns-btn { margin-top: 24px; background: #fff; border-color: #fff; color: #a23e63; }
 .btn.ns-btn:hover { background: #ffe9f0; border-color: #ffe9f0; color: #8a3556; transform: translateY(-1px); }
 
-/* Contador: caixas translúcidas brancas */
-.namoro-section .nc-box { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.3); }
-.namoro-section .nc-num { color: #fff; }
-.namoro-section .nc-lbl { color: rgba(255,255,255,0.82); }
+/* Contador em destaque: caixas brancas sólidas */
+.ns-count-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.92);
+}
+.ns-count-label .ico-heart { color: #fff; }
+.namoro-count--hero { gap: 12px; }
+.namoro-count--hero .nc-box {
+  min-width: 74px;
+  padding: 14px 12px;
+  border-radius: 12px;
+  background: #fff;
+  border: none;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+}
+.namoro-count--hero .nc-num { color: #a23e63; font-size: clamp(28px, 4vw, 36px); }
+.namoro-count--hero .nc-lbl { color: var(--muted); }
 
 /* Selo gigante 15% OFF (carimbo de promoção) */
 .ns-off {
