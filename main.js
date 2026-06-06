@@ -126,6 +126,21 @@ const PUBS = [['tudo', 'Tudo'], ['ela', 'Para ela'], ['ele', 'Para ele'], ['dois
 let namoroTabs = null;
 let activeTab = 'tudo';
 
+// Combos joia + buquê (parceria com floricultura · retirada · valor da joia + buquê)
+const COMBOS = [
+  { nome: 'Apaixonada', joia: 'Colar Coração Rubi', buque: 'buquê de rosas vermelhas' },
+  { nome: 'Eterno',     joia: 'Anel Solitário',     buque: 'buquê clássico' },
+  { nome: 'Encanto',    joia: 'Pulseira Pandora',   buque: 'buquê de flores do campo' },
+  { nome: 'Sol e Lua',  joia: 'Pulseira Sol e Lua', buque: 'mini buquê' },
+];
+function findPiece(name) {
+  for (const items of Object.values(catalog)) {
+    const it = items.find(i => i.name === name);
+    if (it) return it;
+  }
+  return null;
+}
+
 function catalogItemHTML(item, namoroMode) {
   // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
   const imgUrl = new URL(item.src, location.href).href;
@@ -153,21 +168,50 @@ function renderGrid(items, namoroMode) {
     : `<p class="catalog-empty">Em breve mais peças nessa categoria!</p>`;
 }
 
+function renderCombos() {
+  catalogGrid.innerHTML = COMBOS.map(c => {
+    const piece = findPiece(c.joia);
+    const src = piece ? piece.src : '';
+    const imgUrl = piece ? new URL(piece.src, location.href).href : '';
+    const msg = `Olá Maria! 💝 Quero o Combo ${c.nome} (${c.joia} + ${c.buque}) de Dia dos Namorados, para retirada. Como fica o valor da joia + buquê?\n${imgUrl}`;
+    return `
+        <div class="catalog-item combo-item">
+          <div class="catalog-img">
+            <img src="${src}" alt="${c.joia}" loading="lazy" decoding="async" />
+            <span class="combo-flor"><svg class="ico-flor" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-flor"/></svg></span>
+          </div>
+          <span class="catalog-item-name">Combo ${c.nome}</span>
+          <span class="combo-desc">${c.joia} + ${c.buque}</span>
+          <span class="combo-preco">valor da joia + buquê · retirada</span>
+          <a class="catalog-wa-btn"
+             href="${WA}${encodeURIComponent(msg)}"
+             target="_blank" rel="noopener">
+            ${WA_ICON} Pedir combo
+          </a>
+        </div>`;
+  }).join('');
+}
+
 function buildNamoroTabs(items) {
   activeTab = 'tudo';
   const count = pub => pub === 'tudo' ? items.length : items.filter(i => i.publico === pub).length;
   namoroTabs = document.createElement('div');
   namoroTabs.className = 'catalog-tabs';
-  namoroTabs.innerHTML = PUBS.filter(([k]) => count(k) > 0)
+  const pubBtns = PUBS.filter(([k]) => count(k) > 0)
     .map(([k, label], i) => `<button type="button" data-pub="${k}" class="${i === 0 ? 'active' : ''}">${label}</button>`)
     .join('');
+  const comboBtn = COMBOS.length
+    ? `<button type="button" data-pub="combos" class="tab-combos"><svg class="ico-flor" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-flor"/></svg> Combos</button>`
+    : '';
+  namoroTabs.innerHTML = pubBtns + comboBtn;
   catalogBody.insertBefore(namoroTabs, catalogGrid);
   namoroTabs.addEventListener('click', e => {
     const b = e.target.closest('button[data-pub]');
     if (!b) return;
     activeTab = b.dataset.pub;
     namoroTabs.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
-    renderGrid(activeTab === 'tudo' ? items : items.filter(i => i.publico === activeTab), true);
+    if (activeTab === 'combos') renderCombos();
+    else renderGrid(activeTab === 'tudo' ? items : items.filter(i => i.publico === activeTab), true);
     catalogBody.scrollTop = 0;
   });
 }
