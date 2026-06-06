@@ -547,23 +547,32 @@
   "Argolas": [
     {
       "src": "assets/photos/IMG_6145.jpg",
-      "name": "Argolas Prata"
+      "name": "Argolas Prata",
+      "preco": 110
     },
     {
       "src": "assets/photos/IMG_8879.jpg",
-      "name": "Cartela de Argolas 1"
+      "name": "Cartela de Argolas 1",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8880.jpg",
-      "name": "Cartela de Argolas 2"
+      "name": "Cartela de Argolas 2",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8881.jpg",
-      "name": "Cartela de Argolas 3"
+      "name": "Cartela de Argolas 3",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8882.jpg",
-      "name": "Cartela de Argolas 4"
+      "name": "Cartela de Argolas 4",
+      "preco": 30,
+      "aPartir": true
     }
   ],
   "Escapulários": [
