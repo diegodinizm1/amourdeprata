@@ -72,7 +72,8 @@
     },
     {
       "src": "assets/photos/IMG_8747.jpg",
-      "name": "Colar Gravatinha de Cristais"
+      "name": "Colar Gravatinha de Cristais",
+      "preco": 215
     }
   ],
   "Brincos": [
@@ -136,31 +137,45 @@
     },
     {
       "src": "assets/photos/1f70ab7d-c278-42b6-a16b-e7b38bbbefc5.jpg",
-      "name": "Cartela de Brincos 1"
+      "name": "Cartela de Brincos 1",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/3566ebee-0204-4ec0-881a-9530507762a3.jpg",
-      "name": "Cartela de Brincos 2"
+      "name": "Cartela de Brincos 2",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/56135873-687a-4a94-84f6-9f65ab12b3cd.jpg",
-      "name": "Cartela de Brincos 3"
+      "name": "Cartela de Brincos 3",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/a66440ea-f1a9-4b58-89ca-26aae3cbe3e9.jpg",
-      "name": "Cartela de Brincos 4"
+      "name": "Cartela de Brincos 4",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/b2ec266b-4ae5-4031-ba7a-fb240dc0e255.jpg",
-      "name": "Cartela de Brincos 5"
+      "name": "Cartela de Brincos 5",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/c8faa696-31dd-4d9b-84a6-fca1d882c2ba.jpg",
-      "name": "Cartela de Brincos 6"
+      "name": "Cartela de Brincos 6",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8884.jpg",
-      "name": "Brincos Sortidos"
+      "name": "Brincos Sortidos",
+      "preco": 40,
+      "aPartir": true
     }
   ],
   "Pulseiras": [
@@ -330,55 +345,75 @@
     },
     {
       "src": "assets/photos/IMG_8807.jpg",
-      "name": "Pulseira Veneziana"
+      "name": "Pulseira Veneziana",
+      "preco": 85
     },
     {
       "src": "assets/photos/IMG_8808.jpg",
-      "name": "Pulseira Cordão"
+      "name": "Pulseira Cordão",
+      "preco": 65,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8809.jpg",
-      "name": "Pulseira Singapura"
+      "name": "Pulseira Singapura",
+      "preco": 65,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8811.jpg",
-      "name": "Pulseira Malha"
+      "name": "Pulseira Malha",
+      "preco": 65,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8812.jpg",
-      "name": "Pulseira Elos"
+      "name": "Pulseira Elos",
+      "preco": 130,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8813.jpg",
-      "name": "Pulseira Lisa"
+      "name": "Pulseira Lisa",
+      "preco": 130,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8831.jpg",
-      "name": "Pulseira Trevo da Sorte"
+      "name": "Pulseira Trevo da Sorte",
+      "preco": 120
     },
     {
       "src": "assets/photos/IMG_8837.jpg",
-      "name": "Pulseira Pedras Coloridas"
+      "name": "Pulseira Pedras Coloridas",
+      "preco": 120,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8839.jpg",
-      "name": "Pulseira Delicada"
+      "name": "Pulseira Delicada",
+      "preco": 74
     },
     {
       "src": "assets/photos/IMG_8855.jpg",
-      "name": "Pulseira Fina"
+      "name": "Pulseira Fina",
+      "preco": 86
     },
     {
       "src": "assets/photos/IMG_8862.jpg",
-      "name": "Pulseira Corrente"
+      "name": "Pulseira Corrente",
+      "preco": 100
     },
     {
       "src": "assets/photos/IMG_8871.jpg",
-      "name": "Pulseira Prata"
+      "name": "Pulseira Prata",
+      "preco": 90
     },
     {
       "src": "assets/photos/IMG_8550.jpg",
-      "name": "Pulseira Terço"
+      "name": "Pulseira Terço",
+      "preco": 135,
+      "aPartir": true
     }
   ],
   "Pingentes": [
@@ -414,11 +449,15 @@
     },
     {
       "src": "assets/photos/IMG_8895.jpg",
-      "name": "Pingentes Sortidos"
+      "name": "Pingentes Sortidos",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8899.jpg",
-      "name": "Pingentes Variados"
+      "name": "Pingentes Variados",
+      "preco": 30,
+      "aPartir": true
     }
   ],
   "Cordões": [
@@ -462,27 +501,33 @@
     },
     {
       "src": "assets/photos/IMG_8906.jpg",
-      "name": "Cordão Delicado"
+      "name": "Cordão Delicado",
+      "preco": 130
     },
     {
       "src": "assets/photos/IMG_8907.jpg",
-      "name": "Cordão Fino"
+      "name": "Cordão Fino",
+      "preco": 130
     },
     {
       "src": "assets/photos/IMG_8908.jpg",
-      "name": "Cordão Veneziano"
+      "name": "Cordão Veneziano",
+      "preco": 65
     },
     {
       "src": "assets/photos/IMG_8909.jpg",
-      "name": "Cordão Singapura"
+      "name": "Cordão Singapura",
+      "preco": 65
     },
     {
       "src": "assets/photos/IMG_8910.jpg",
-      "name": "Cordão Cordinha"
+      "name": "Cordão Cordinha",
+      "preco": 50
     },
     {
       "src": "assets/photos/IMG_8911.jpg",
-      "name": "Cordão Prata"
+      "name": "Cordão Prata",
+      "preco": 50
     }
   ],
   "Berloques": [
@@ -524,7 +569,8 @@
   "Escapulários": [
     {
       "src": "assets/photos/IMG_9019.jpg",
-      "name": "Escapulário Nossa Senhora Aparecida"
+      "name": "Escapulário Nossa Senhora Aparecida",
+      "preco": 210
     }
   ],
   "Tornozeleiras": [
