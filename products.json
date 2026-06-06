@@ -73,10 +73,6 @@
     {
       "src": "assets/photos/IMG_8747.jpg",
       "name": "Colar Gravatinha de Cristais"
-    },
-    {
-      "src": "assets/photos/IMG_9019.jpg",
-      "name": "Escapulário Nossa Senhora Aparecida"
     }
   ],
   "Brincos": [
@@ -320,11 +316,6 @@
       "preco": 80
     },
     {
-      "src": "assets/photos/IMG_8873.jpg",
-      "name": "Tornozeleira Pingente Cristal",
-      "preco": 82
-    },
-    {
       "src": "assets/photos/colar-bolinhas.jpeg",
       "name": "Pulseira Bolinhas Prata",
       "preco": 90
@@ -528,6 +519,19 @@
     {
       "src": "assets/photos/IMG_8882.jpg",
       "name": "Cartela de Argolas 4"
+    }
+  ],
+  "Escapulários": [
+    {
+      "src": "assets/photos/IMG_9019.jpg",
+      "name": "Escapulário Nossa Senhora Aparecida"
+    }
+  ],
+  "Tornozeleiras": [
+    {
+      "src": "assets/photos/IMG_8873.jpg",
+      "name": "Tornozeleira Pingente Cristal",
+      "preco": 82
     }
   ]
 }
