@@ -129,6 +129,34 @@
       "name": "Brincos Coloridos Tray",
       "preco": 40,
       "aPartir": true
+    },
+    {
+      "src": "assets/photos/1f70ab7d-c278-42b6-a16b-e7b38bbbefc5.jpg",
+      "name": "Cartela de Brincos 1"
+    },
+    {
+      "src": "assets/photos/3566ebee-0204-4ec0-881a-9530507762a3.jpg",
+      "name": "Cartela de Brincos 2"
+    },
+    {
+      "src": "assets/photos/56135873-687a-4a94-84f6-9f65ab12b3cd.jpg",
+      "name": "Cartela de Brincos 3"
+    },
+    {
+      "src": "assets/photos/a66440ea-f1a9-4b58-89ca-26aae3cbe3e9.jpg",
+      "name": "Cartela de Brincos 4"
+    },
+    {
+      "src": "assets/photos/b2ec266b-4ae5-4031-ba7a-fb240dc0e255.jpg",
+      "name": "Cartela de Brincos 5"
+    },
+    {
+      "src": "assets/photos/c8faa696-31dd-4d9b-84a6-fca1d882c2ba.jpg",
+      "name": "Cartela de Brincos 6"
+    },
+    {
+      "src": "assets/photos/IMG_8884.jpg",
+      "name": "Brincos Sortidos"
     }
   ],
   "Pulseiras": [
@@ -300,6 +328,54 @@
       "publico": "ele",
       "preco": 65,
       "aPartir": true
+    },
+    {
+      "src": "assets/photos/IMG_8807.jpg",
+      "name": "Pulseira Veneziana"
+    },
+    {
+      "src": "assets/photos/IMG_8808.jpg",
+      "name": "Pulseira Cordão"
+    },
+    {
+      "src": "assets/photos/IMG_8809.jpg",
+      "name": "Pulseira Singapura"
+    },
+    {
+      "src": "assets/photos/IMG_8811.jpg",
+      "name": "Pulseira Malha"
+    },
+    {
+      "src": "assets/photos/IMG_8812.jpg",
+      "name": "Pulseira Elos"
+    },
+    {
+      "src": "assets/photos/IMG_8813.jpg",
+      "name": "Pulseira Lisa"
+    },
+    {
+      "src": "assets/photos/IMG_8831.jpg",
+      "name": "Pulseira Trevo da Sorte"
+    },
+    {
+      "src": "assets/photos/IMG_8837.jpg",
+      "name": "Pulseira Pedras Coloridas"
+    },
+    {
+      "src": "assets/photos/IMG_8839.jpg",
+      "name": "Pulseira Delicada"
+    },
+    {
+      "src": "assets/photos/IMG_8855.jpg",
+      "name": "Pulseira Fina"
+    },
+    {
+      "src": "assets/photos/IMG_8862.jpg",
+      "name": "Pulseira Corrente"
+    },
+    {
+      "src": "assets/photos/IMG_8871.jpg",
+      "name": "Pulseira Prata"
     }
   ],
   "Pingentes": [
@@ -332,6 +408,14 @@
       "name": "Pingentes Prata Sortidos",
       "preco": 30,
       "aPartir": true
+    },
+    {
+      "src": "assets/photos/IMG_8895.jpg",
+      "name": "Pingentes Sortidos"
+    },
+    {
+      "src": "assets/photos/IMG_8899.jpg",
+      "name": "Pingentes Variados"
     }
   ],
   "Cordões": [
@@ -386,6 +470,28 @@
       "name": "Berloques Temáticos",
       "preco": 60,
       "aPartir": true
+    }
+  ],
+  "Argolas": [
+    {
+      "src": "assets/photos/IMG_6145.jpg",
+      "name": "Argolas Prata"
+    },
+    {
+      "src": "assets/photos/IMG_8879.jpg",
+      "name": "Cartela de Argolas 1"
+    },
+    {
+      "src": "assets/photos/IMG_8880.jpg",
+      "name": "Cartela de Argolas 2"
+    },
+    {
+      "src": "assets/photos/IMG_8881.jpg",
+      "name": "Cartela de Argolas 3"
+    },
+    {
+      "src": "assets/photos/IMG_8882.jpg",
+      "name": "Cartela de Argolas 4"
     }
   ]
 }

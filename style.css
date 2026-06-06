@@ -852,7 +852,7 @@ body.menu-open .mobile-menu { opacity: 1; pointer-events: auto; }
 /* ---------- Categories ---------- */
 .cats {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   gap: clamp(10px, 1.2vw, 16px);
 }
 .cat {
