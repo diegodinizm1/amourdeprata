@@ -304,6 +304,30 @@ button { font: inherit; cursor: pointer; }
 }
 .nc-today { font-size: 16px; font-weight: 700; color: #a23e63; }
 
+/* Selo 15% OFF */
+.nb-off {
+  background: #fff;
+  color: #a23e63;
+  font-weight: 800;
+  padding: 1px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.off-badge {
+  display: inline-flex;
+  align-items: center;
+  margin: 12px 0 2px;
+  background: #a23e63;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 13px;
+  border-radius: 999px;
+}
+
 /* Durante a campanha, a tarja substitui o announcement (sem duas barras) */
 .namoro-bar ~ .announce { display: none; }
 

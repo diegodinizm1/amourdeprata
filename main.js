@@ -130,7 +130,7 @@ function catalogItemHTML(item, namoroMode) {
   // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
   const imgUrl = new URL(item.src, location.href).href;
   const msg = namoroMode
-    ? `Olá Maria! 💝 Quero esta peça de presente de Dia dos Namorados (e quero saber sobre incluir um buquê 🌹). Me ajuda?\n\n*${item.name}*\n${imgUrl}`
+    ? `Olá Maria! 💝 Quero esta peça de presente de Dia dos Namorados (vi que está com 15% off, e quero saber sobre incluir um buquê 🌹). Me ajuda?\n\n*${item.name}*\n${imgUrl}`
     : `Olá Maria! 💎 Tenho interesse nesta peça:\n\n*${item.name}*\n${imgUrl}`;
   return `
         <div class="catalog-item">
