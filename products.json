@@ -143,7 +143,9 @@
     },
     {
       "src": "assets/photos/IMG_8826.jpg",
-      "name": "Bracelete Rígido"
+      "name": "Bracelete Rígido",
+      "preco": 182,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8833.jpg",
