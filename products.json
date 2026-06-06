@@ -186,7 +186,9 @@
       "src": "assets/photos/pulseira-coracao.jpeg",
       "name": "Pulseira Pandora",
       "namorados": true,
-      "publico": "ela"
+      "publico": "ela",
+      "preco": 350,
+      "aPartir": true
     },
     {
       "src": "assets/photos/pulseiras-borboleta.jpeg",
