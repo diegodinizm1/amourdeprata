@@ -134,6 +134,7 @@ function openCatalog(category) {
         <div class="catalog-item">
           <div class="catalog-img">
             <img src="${item.src}" alt="${item.name}" loading="lazy" decoding="async" />
+            ${item.namorados ? '<span class="cat-selo"><svg class="ico-heart" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-heart"/></svg></span>' : ''}
           </div>
           <span class="catalog-item-name">${item.name}</span>
           <a class="catalog-wa-btn"
@@ -211,6 +212,9 @@ window.addEventListener('popstate', () => {
   else if (modal.classList.contains('open')) closeCatalog();
 });
 catalogReady.then(() => {
+  // Coleção virtual de Namorados (peças marcadas com namorados:true)
+  const namoro = Object.values(catalog).flat().filter(i => i && i.namorados);
+  if (namoro.length) catalog['Presentes de Namorados'] = namoro;
   slugToCat = {};
   for (const c of Object.keys(catalog)) slugToCat[slugify(c)] = c;
   const cat = catFromHash();                // deep-link: #aneis abre a categoria
@@ -341,3 +345,23 @@ document.addEventListener('click', e => {
   }
   window.va('event', payload);
 });
+
+// ============================================================
+// Countdown — Dia dos Namorados (12/06)
+// ============================================================
+(function namoroCountdown() {
+  const el = document.getElementById('namoroCount');
+  if (!el) return;
+  const target = new Date(2026, 5, 11, 23, 59, 59).getTime(); // 12/06/2026
+  const tick = () => {
+    const diff = target - Date.now();
+    if (diff <= 0) { el.innerHTML = 'É hoje! <svg class="ico-heart" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-heart"/></svg>'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    el.textContent = `faltam ${d}d ${h}h ${m}m ${s}s`;
+    setTimeout(tick, 1000);
+  };
+  tick();
+})();
