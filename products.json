@@ -64,43 +64,61 @@
   "Brincos": [
     {
       "src": "assets/photos/IMG_8522.jpg",
-      "name": "Brincos Coloridos"
+      "name": "Brincos Coloridos",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8525.jpg",
-      "name": "Brincos Cristal"
+      "name": "Brincos Cristal",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8883.jpg",
-      "name": "Brincos Flor Cristal"
+      "name": "Brincos Flor Cristal",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8886.jpg",
       "name": "Brincos Princess",
       "namorados": true,
-      "publico": "ela"
+      "publico": "ela",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8889.jpg",
-      "name": "Brincos Round Cristal"
+      "name": "Brincos Round Cristal",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8890.jpg",
       "name": "Brincos Gota Cristal",
       "namorados": true,
-      "publico": "ela"
+      "publico": "ela",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8891.jpg",
-      "name": "Brincos Sortidos"
+      "name": "Brincos Sortidos",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/brincos-cristal.jpeg",
-      "name": "Brincos Cristal Princess"
+      "name": "Brincos Cristal Princess",
+      "preco": 40,
+      "aPartir": true
     },
     {
       "src": "assets/photos/brincos-coloridos.jpeg",
-      "name": "Brincos Coloridos Tray"
+      "name": "Brincos Coloridos Tray",
+      "preco": 40,
+      "aPartir": true
     }
   ],
   "Pulseiras": [
