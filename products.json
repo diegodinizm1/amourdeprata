@@ -214,7 +214,9 @@
       "src": "assets/photos/IMG_8835.jpg",
       "name": "Pulseira Corações Azuis",
       "namorados": true,
-      "publico": "ela"
+      "publico": "ela",
+      "preco": 120,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8838.jpg",
