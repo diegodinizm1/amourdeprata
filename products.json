@@ -295,23 +295,33 @@
   "Pingentes": [
     {
       "src": "assets/photos/IMG_8531.jpg",
-      "name": "Pingentes Prata"
+      "name": "Pingentes Prata",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8896.jpg",
-      "name": "Pingentes Temáticos"
+      "name": "Pingentes Temáticos",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8898.jpg",
-      "name": "Pingentes Religiosos"
+      "name": "Pingentes Religiosos",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/pingentes.jpeg",
-      "name": "Pingentes"
+      "name": "Pingentes",
+      "preco": 30,
+      "aPartir": true
     },
     {
       "src": "assets/photos/IMG_8533.jpg",
-      "name": "Pingentes Prata Sortidos"
+      "name": "Pingentes Prata Sortidos",
+      "preco": 30,
+      "aPartir": true
     }
   ],
   "Cordões": [
