@@ -1543,6 +1543,26 @@ footer {
   letter-spacing: -0.01em;
   color: var(--ink);
 }
+.catalog-price { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: -2px 0 2px; }
+.price-row { display: inline-flex; align-items: baseline; flex-wrap: wrap; gap: 4px 8px; }
+.price-old {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(107,107,107,0.7);
+  font-size: 12.5px;
+}
+.price-now { color: #a23e63; font-weight: 800; font-size: 16px; letter-spacing: -0.01em; }
+.price-tag {
+  display: inline-block;
+  background: #c2173f;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 999px;
+}
 .catalog-wa-btn {
   display: inline-flex;
   align-items: center;

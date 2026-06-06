@@ -126,6 +126,22 @@ const PUBS = [['tudo', 'Tudo'], ['ela', 'Para ela'], ['ele', 'Para ele'], ['dois
 let namoroTabs = null;
 let activeTab = 'tudo';
 
+const fmtBRL = v => v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+function priceHTML(item) {
+  if (item.preco == null) return '';
+  const pre = item.aPartir ? 'a partir de ' : '';
+  const promo = item.preco * 0.85; // 15% off à vista
+  return `
+          <div class="catalog-price">
+            <div class="price-row">
+              <span class="price-old">R$ ${fmtBRL(item.preco)}</span>
+              <span class="price-now">${pre}R$ ${fmtBRL(promo)}</span>
+            </div>
+            <span class="price-tag">−15% à vista · Namorados</span>
+          </div>`;
+}
+
 function catalogItemHTML(item, namoroMode) {
   // URL absoluta da foto → o WhatsApp gera o preview da imagem na conversa
   const imgUrl = new URL(item.src, location.href).href;
@@ -139,6 +155,7 @@ function catalogItemHTML(item, namoroMode) {
             ${item.namorados ? '<span class="cat-selo"><svg class="ico-heart" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-heart"/></svg></span>' : ''}
           </div>
           <span class="catalog-item-name">${item.name}</span>
+          ${priceHTML(item)}
           <a class="catalog-wa-btn"
              href="${WA}${encodeURIComponent(msg)}"
              target="_blank" rel="noopener">
