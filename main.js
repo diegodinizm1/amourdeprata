@@ -98,6 +98,7 @@ const modal = document.createElement('div');
 modal.id = 'catalog-modal';
 modal.setAttribute('role', 'dialog');
 modal.setAttribute('aria-modal', 'true');
+modal.setAttribute('aria-label', 'Catálogo de peças');
 modal.innerHTML = `
   <div class="catalog-backdrop"></div>
   <div class="catalog-sheet">
