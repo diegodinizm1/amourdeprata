@@ -349,6 +349,75 @@ button { font: inherit; cursor: pointer; }
   color: #fff;
 }
 
+/* Faixa de preço no card de categoria */
+.cat-from {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.92);
+  text-shadow: 0 1px 6px rgba(0,0,0,0.55);
+}
+
+/* Controles do catálogo (filtro/ordenação por preço) */
+.catalog-tabs { margin-bottom: 14px; }
+.catalog-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.cc-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cc-chips button {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.cc-chips button:hover { color: var(--ink); border-color: var(--silver-3); }
+.cc-chips button.active { background: var(--cyan); border-color: var(--cyan); color: #fff; }
+.cc-sort {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+
+/* Presentes por orçamento (seção de Namorados) */
+.ns-budget {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+.ns-budget-label { font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: rgba(255,255,255,0.92); }
+.ns-budget button {
+  border: 1px solid rgba(255,255,255,0.55);
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.ns-budget button:hover { background: #fff; color: #a23e63; border-color: #fff; }
+
 /* Palco minimalista da coleção de Namorados (paleta da landing) */
 #catalog-modal.namoro .catalog-sheet { background: var(--cream); }
 #catalog-modal.namoro .catalog-body {

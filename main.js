@@ -124,8 +124,6 @@ const catalogBody  = modal.querySelector('.catalog-body');
 
 const NAMORO_CAT = 'Presentes de Namorados';
 const PUBS = [['tudo', 'Tudo'], ['ela', 'Para ela'], ['ele', 'Para ele'], ['dois', 'Para os dois']];
-let namoroTabs = null;
-let activeTab = 'tudo';
 
 const fmtBRL = v => v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -171,42 +169,106 @@ function renderGrid(items, namoroMode) {
     : `<p class="catalog-empty">Em breve mais peças nessa categoria!</p>`;
 }
 
-function buildNamoroTabs(items) {
-  activeTab = 'tudo';
-  const count = pub => pub === 'tudo' ? items.length : items.filter(i => i.publico === pub).length;
-  namoroTabs = document.createElement('div');
-  namoroTabs.className = 'catalog-tabs';
-  namoroTabs.innerHTML = PUBS.filter(([k]) => count(k) > 0)
-    .map(([k, label], i) => `<button type="button" data-pub="${k}" class="${i === 0 ? 'active' : ''}">${label}</button>`)
-    .join('');
-  catalogBody.insertBefore(namoroTabs, catalogGrid);
-  namoroTabs.addEventListener('click', e => {
-    const b = e.target.closest('button[data-pub]');
-    if (!b) return;
-    activeTab = b.dataset.pub;
-    namoroTabs.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
-    renderGrid(activeTab === 'tudo' ? items : items.filter(i => i.publico === activeTab), true);
-    catalogBody.scrollTop = 0;
-  });
+// Estado da visualização do modal (categoria/faixa + filtros)
+const view = { items: [], namoro: false, pub: 'tudo', price: null, sort: 'padrao' };
+const PRICE_CHIPS = [
+  ['all', 'Todos', null],
+  ['0-50', 'Até R$ 50', [0, 50]],
+  ['50-100', 'R$ 50–100', [50, 100]],
+  ['100-999999', '+ R$ 100', [100, 999999]],
+];
+let controlsWrap = null;
+const avista = item => item.preco == null ? null : item.preco * 0.85;
+
+function applyView() {
+  let arr = view.items.slice();
+  if (view.namoro && view.pub !== 'tudo') arr = arr.filter(i => i.publico === view.pub);
+  if (view.price) arr = arr.filter(i => { const p = avista(i); return p != null && p >= view.price[0] && p < view.price[1]; });
+  if (view.sort === 'asc') arr.sort((a, b) => (a.preco ?? 1e9) - (b.preco ?? 1e9));
+  else if (view.sort === 'desc') arr.sort((a, b) => (b.preco ?? -1) - (a.preco ?? -1));
+  renderGrid(arr, view.namoro);
+  catalogBody.scrollTop = 0;
+}
+
+function buildModalUI(namoroMode, items) {
+  if (controlsWrap) { controlsWrap.remove(); controlsWrap = null; }
+  controlsWrap = document.createElement('div');
+  controlsWrap.className = 'catalog-ui';
+
+  if (namoroMode) {
+    const count = pub => pub === 'tudo' ? items.length : items.filter(i => i.publico === pub).length;
+    const tabs = document.createElement('div');
+    tabs.className = 'catalog-tabs';
+    tabs.innerHTML = PUBS.filter(([k]) => count(k) > 0)
+      .map(([k, label], i) => `<button type="button" data-pub="${k}" class="${i === 0 ? 'active' : ''}">${label}</button>`).join('');
+    tabs.addEventListener('click', e => {
+      const b = e.target.closest('button[data-pub]'); if (!b) return;
+      view.pub = b.dataset.pub;
+      tabs.querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b));
+      applyView();
+    });
+    controlsWrap.appendChild(tabs);
+  }
+
+  if (items.some(i => i.preco != null)) {
+    const bar = document.createElement('div');
+    bar.className = 'catalog-controls';
+    const chips = PRICE_CHIPS.map(([k, label]) => {
+      const active = (view.price == null && k === 'all') || (view.price && `${view.price[0]}-${view.price[1]}` === k);
+      return `<button type="button" data-price="${k}" class="${active ? 'active' : ''}">${label}</button>`;
+    }).join('');
+    bar.innerHTML = `<div class="cc-chips">${chips}</div>
+      <select class="cc-sort" aria-label="Ordenar por preço">
+        <option value="padrao">Ordenar</option>
+        <option value="asc"${view.sort === 'asc' ? ' selected' : ''}>Menor preço</option>
+        <option value="desc"${view.sort === 'desc' ? ' selected' : ''}>Maior preço</option>
+      </select>`;
+    bar.querySelector('.cc-chips').addEventListener('click', e => {
+      const b = e.target.closest('button[data-price]'); if (!b) return;
+      view.price = PRICE_CHIPS.find(c => c[0] === b.dataset.price)[2];
+      bar.querySelectorAll('.cc-chips button').forEach(x => x.classList.toggle('active', x === b));
+      applyView();
+    });
+    bar.querySelector('select').addEventListener('change', e => { view.sort = e.target.value; applyView(); });
+    controlsWrap.appendChild(bar);
+  }
+
+  catalogBody.insertBefore(controlsWrap, catalogGrid);
+}
+
+function openModalShell() {
+  lastFocused = document.activeElement;
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => { modal.classList.add('open'); closeBtn.focus(); });
 }
 
 function openCatalog(category) {
+  const namoroMode = category === NAMORO_CAT;
+  Object.assign(view, { items: catalog[category] || [], namoro: namoroMode, pub: 'tudo', price: null, sort: 'padrao' });
   currentCategory = category;
   if (typeof window.va === 'function') window.va('event', { name: 'category_open', category });
-  const items = catalog[category] || [];
-  const namoroMode = category === NAMORO_CAT;
   modal.classList.toggle('namoro', namoroMode);   // palco minimalista da campanha
   catalogTitle.innerHTML = `<em>${category}</em>`;
-  if (namoroTabs) { namoroTabs.remove(); namoroTabs = null; }
-  if (namoroMode) buildNamoroTabs(items);
-  renderGrid(items, namoroMode);
+  buildModalUI(namoroMode, view.items);
+  applyView();
+  openModalShell();
+}
 
-  lastFocused = document.activeElement;
-  document.body.style.overflow = 'hidden';
-  requestAnimationFrame(() => {
-    modal.classList.add('open');
-    closeBtn.focus();
-  });
+// "Presentes por faixa de preço" (à vista) — coleção cruzando todas as categorias
+const allPieces = () => Object.entries(catalog).filter(([k]) => k !== NAMORO_CAT).flatMap(([, v]) => v);
+function openPriceGift(range, label) {
+  Object.assign(view, { items: allPieces(), namoro: false, pub: 'tudo', price: range, sort: 'asc' });
+  currentCategory = label;
+  if (typeof window.va === 'function') window.va('event', { name: 'price_gift', label });
+  modal.classList.remove('namoro');
+  catalogTitle.innerHTML = `<em>${label}</em>`;
+  buildModalUI(false, view.items);
+  applyView();
+  openModalShell();
+}
+function navOpenPriceGift(range, label) {
+  history.pushState({ gift: label }, '', '#presentes');
+  openPriceGift(range, label);
 }
 
 function closeCatalog() {
@@ -254,7 +316,7 @@ function navOpenCatalog(category) {
   openCatalog(category);
 }
 function closeViaHistory() {
-  if (history.state && history.state.cat) {
+  if (history.state && (history.state.cat || history.state.gift)) {
     history.back();                       // X / voltar removem a entrada → popstate fecha
   } else {
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
@@ -272,8 +334,33 @@ catalogReady.then(() => {
   if (namoro.length) catalog['Presentes de Namorados'] = namoro;
   slugToCat = {};
   for (const c of Object.keys(catalog)) slugToCat[slugify(c)] = c;
+
+  // Faixa de preço (à vista) em cada card de categoria: "a partir de R$ X"
+  document.querySelectorAll('.cat .cat-name').forEach(nameEl => {
+    const precos = (catalog[nameEl.textContent.trim()] || []).map(i => i.preco).filter(p => p != null);
+    if (!precos.length) return;
+    const el = document.createElement('span');
+    el.className = 'cat-from';
+    el.textContent = `a partir de R$ ${fmtBRL(Math.min(...precos) * 0.85)}`;
+    nameEl.appendChild(el);
+  });
+
   const cat = catFromHash();                // deep-link: #aneis abre a categoria
   if (cat) { history.replaceState(null, '', '#' + slugify(cat)); openCatalog(cat); }
+});
+
+// Botões "Presentes por faixa de preço"
+const GIFT_LABELS = {
+  '0-50': 'Presentes até R$ 50',
+  '50-100': 'Presentes de R$ 50 a 100',
+  '100-999999': 'Presentes acima de R$ 100',
+};
+document.querySelectorAll('[data-gift]').forEach(b => {
+  b.addEventListener('click', async () => {
+    await catalogReady;
+    const range = b.dataset.gift.split('-').map(Number);
+    navOpenPriceGift(range, GIFT_LABELS[b.dataset.gift] || 'Presentes');
+  });
 });
 
 closeBtn.addEventListener('click', closeViaHistory);
@@ -339,7 +426,7 @@ sheet.addEventListener('pointercancel', () => {
 document.querySelectorAll('.cat').forEach(cat => {
   cat.addEventListener('click', async e => {
     e.preventDefault();
-    const category = cat.querySelector('.cat-name')?.textContent.trim();
+    const category = cat.querySelector('.cat-name')?.firstChild?.textContent.trim();
     if (!category) return;
     await catalogReady;            // garante que products.json carregou
     if (catalog[category]) navOpenCatalog(category);
